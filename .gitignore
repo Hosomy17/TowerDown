@@ -27,3 +27,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+#Feito pro Rubens
+/*
+!/Assets/Sprites
+
+*.gitignore
