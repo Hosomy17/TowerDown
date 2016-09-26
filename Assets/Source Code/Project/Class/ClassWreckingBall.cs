@@ -7,6 +7,7 @@ public class ClassWreckingBall : ClassEnemy
     public Shaker shaker;
     public int distance;
     public int side;
+    public float velocity;
     public List<AudioClip> sfx;
 
     public void Move()
@@ -21,8 +22,8 @@ public class ClassWreckingBall : ClassEnemy
         speed = -speed;
         side = -side;
 
-        FacadeEnemy.Walk(this, Vector2.right); 
-        Invoke("Move",3f);
+        FacadeEnemy.Walk(this, Vector2.right);
+        Invoke("Move", velocity);
 
         distance++;
     }
@@ -61,12 +62,13 @@ public class ClassWreckingBall : ClassEnemy
 
     public void GoToRoom(int id)
     {
-        for(int i = distance; i < (id * 10) -1; i++)
+        for(int i = distance; i < id-1; i++)
         {
             DestroyRoom(i);
         }
+        velocity -= 0.1f;
         BehaviourSound.Play(gameObject, sfx[0]);
-        distance = (id * 10) -1;
+        distance = id -1;
     }
 
     private void DestroyRoom(int id)

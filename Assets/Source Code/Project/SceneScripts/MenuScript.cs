@@ -4,12 +4,31 @@ using System.Collections;
 public class MenuScript : ScriptGeneric
 {
     public GameManagerGeneric gm;
+    public GameObject canvas;
+    private AudioSource fadeIn;
 
     void Awake()
     {
+        fadeIn = GetComponents<AudioSource>().GetValue(1) as AudioSource;
         gm = GameManagerGeneric.Instance;
+        Screen.SetResolution(384, 384, false);
+    }
 
-        Screen.SetResolution(300, 300, false);
+    void Start()
+    {
+        Invoke("FadeIn",12f);
+    }
+
+    public void FadeIn()
+    {
+        canvas.SetActive(true);
+    }
+
+    public void FadeOut()
+    {
+        canvas.SetActive(false);
+        fadeIn.Play();
+        Invoke("StartGame", 4f);
     }
 
     public void StartGame()
@@ -19,7 +38,11 @@ public class MenuScript : ScriptGeneric
 
     public void Quit()
     {
-        gm.CloseGame();
+        Debug.Log("Egg");
+        if (Input.GetKey(KeyCode.H))
+            gm.LoadScene("Egg");
+        else
+            gm.CloseGame();
     }
 
     public void SizeScreen()

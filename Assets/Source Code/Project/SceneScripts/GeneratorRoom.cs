@@ -9,16 +9,21 @@ public class GeneratorRoom : MonoBehaviour
     public int roomsTotal;
     public char exitSide;
     public GameObject objEvent;
+    public GameObject rip;
+    private int highRip;
 
     void Start()
     {
-
+        highRip = PlayerPrefs.GetInt("High Room", -1);
         for (int i = 0; i < 20; i++)
             GenerateRoom();
+
     }
 
     public void GenerateRoom()
     {
+        
+
         char exitSide;
         GameObject room;
         GameObject obj;
@@ -31,13 +36,17 @@ public class GeneratorRoom : MonoBehaviour
         pos = Vector3.zero;
         pos.y = -roomsTotal * (32 * 7);
 
-        if (roomsTotal % 10 == 0)
+        if (highRip == roomsTotal)
         {
-            GameObject ev = (GameObject)Instantiate(objEvent);
-            ev.name = objEvent.name;
-            ev.transform.parent = transform;
-            ev.transform.localPosition = pos;
+            GameObject r = (GameObject)Instantiate(rip);
+            r.transform.parent = transform;
+            r.transform.localPosition = pos;
         }
+
+        GameObject ev = (GameObject)Instantiate(objEvent);
+        ev.name = objEvent.name;
+        ev.transform.parent = transform;
+        ev.transform.localPosition = pos;
 
         obj = (GameObject) Instantiate(room);
         obj.name = "Room" + roomsTotal;

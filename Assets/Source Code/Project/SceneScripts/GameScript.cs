@@ -35,7 +35,7 @@ public class GameScript : ScriptGeneric
     public void GameOver()
     {
         Dictionary<string, object> info = new Dictionary<string, object>();
-        info.Add("Total Rooms", (countEvent * 10).ToString() );
+        info.Add("Total Rooms", countEvent );
 
         gm.SaveInfo(info);
         gm.LoadScene("Game Over");
@@ -51,10 +51,14 @@ public class GameScript : ScriptGeneric
                 aud.Play();
             break;
             case "Event2" :
-                for (int i = 0; i < 10; i++)
-                    generatorRoom.GenerateRoom();
-                wreackingBall.GoToRoom(++countEvent);
-                Rooms.text = "Room: " + countEvent*10;
+                if (++countEvent % 10 == 0)
+                {
+                    for (int i = 0; i < 10; i++)
+                        generatorRoom.GenerateRoom();
+                    wreackingBall.GoToRoom(countEvent);
+                    hero.GetComponent<ClassHero>().speed += 0.1f;
+                }
+                Rooms.text = "Room: " + countEvent;
             break;
         }
     }

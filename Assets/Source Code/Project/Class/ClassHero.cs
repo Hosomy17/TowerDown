@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ClassHero : ClassGeneric
 {
     public int faceRight;
-    public int life;
+    public float life;
     public float speed;
     public float forceJump;
     public float initialforceAttack;
@@ -14,6 +15,7 @@ public class ClassHero : ClassGeneric
     public bool isAttack;
     public bool isGhost;
     public List<AudioClip> sfx;
+    public Image hp;
 
     void Awake()
     {

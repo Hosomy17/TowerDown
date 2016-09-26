@@ -20,7 +20,8 @@ public static class FacadeHero
 
     public static void Damage(ClassHero classHero)
     {
-        classHero.life--;
+        classHero.life -= 10;
+        classHero.hp.fillAmount = classHero.life / 100;
         if(classHero.life <= 0)
         {
             GameObject.Find("GameManager").GetComponent<GameScript>().GameOver();
@@ -36,6 +37,10 @@ public static class FacadeHero
 
     public static void Guard(ClassHero classHero)
     {
+        classHero.life += 3;
+        if(classHero.life >= 100)
+            classHero.life = 100;
+        classHero.hp.fillAmount = classHero.life / 100;
         AudioClip audio = classHero.sfx[3];
         BehaviourSound.Play(classHero.gameObject, audio);
     }
