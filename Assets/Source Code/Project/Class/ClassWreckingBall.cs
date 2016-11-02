@@ -66,7 +66,7 @@ public class ClassWreckingBall : ClassEnemy
         {
             DestroyRoom(i);
         }
-        velocity -= 0.1f;
+        velocity -= 0.2f;
         BehaviourSound.Play(gameObject, sfx[0]);
         distance = id -1;
     }

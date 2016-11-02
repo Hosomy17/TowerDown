@@ -26,10 +26,7 @@ public class GameOverScript : ScriptGeneric
         total = high.ToString();
         totalRooms.text = "Total Rooms: "+total;
 
-        int last = PlayerPrefs.GetInt("High Room", 0);
-
-        if(last < high)
-            PlayerPrefs.SetInt("High Room", high);
+        PlayerPrefs.SetInt("Last Room", high);
     }
 
     public void BackMenu()

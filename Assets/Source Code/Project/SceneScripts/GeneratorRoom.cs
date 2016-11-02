@@ -14,7 +14,7 @@ public class GeneratorRoom : MonoBehaviour
 
     void Start()
     {
-        highRip = PlayerPrefs.GetInt("High Room", -1);
+        highRip = PlayerPrefs.GetInt("Last Room", -1);
         for (int i = 0; i < 20; i++)
             GenerateRoom();
 

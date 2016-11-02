@@ -28,7 +28,7 @@ public class MenuScript : ScriptGeneric
     {
         canvas.SetActive(false);
         fadeIn.Play();
-        Invoke("StartGame", 4f);
+        Invoke("StartGame", 6f);
     }
 
     public void StartGame()
